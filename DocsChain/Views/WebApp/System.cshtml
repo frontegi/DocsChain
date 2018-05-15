@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewData["Title"] = "System Functions";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<div class="row">
+    <div class="col-12">
+        <form asp-action="BootFromUrl" asp-controller="WebApp">
+            <div class="form-group">
+                <label for="ipAddress">Known node (live) IP and port (es. 10.175.41.5:5979)</label>
+                <input type="text" class="form-control" id="bootUrl" name="bootUrl">
+            </div>
+            <button type="submit" class="btn btn-primary">Bootstrap Node</button>
+        </form>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-12">
+        <form asp-action="CreateTestChain" asp-controller="WebApp">
+            <div class="form-group">
+                <label>Add sample PDF documents to Blockchain</label>
+                <button type="submit" class="btn btn-outline-success">Add Test Docs</button>
+            </div>  
+        </form>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <form asp-action="ResetChain" asp-controller="WebApp">
+            <div class="form-group">
+                <label>Full Chain Reset</label>
+                <button type="submit" class="btn btn-outline-danger">Reset DocsChain Nodes</button>
+            </div> 
+        </form>
+    </div>
+</div>

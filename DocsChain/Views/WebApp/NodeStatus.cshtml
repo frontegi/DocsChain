@@ -1,0 +1,34 @@
+﻿@model NodeStatusViewModel
+@{
+    ViewData["Title"] = "View";
+}
+
+<h2>Node Status</h2>
+
+<div class="row">
+    <div class="col-md-6">Blockchain Name: <span class="badge badge-success">@Model.Chain.ChainDescription</span></div>
+    <div class="col-md-6">Genesis Date: <span class="badge badge-success">@Model.Chain.GenesisDate</span></div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">Chain Guid: <span class="badge badge-success">@Model.Chain.UniqueId</span></div>
+    <div class="col-md-6">Total Nodes: <span class="badge badge-success">@Model.Chain.NodesList.Count</span></div>
+</div>
+
+<h3>Connected Peers</h3>
+<table class="table table-light">
+    <tr>
+        <th>Node Name</th>
+        <th>Endpoint</th>
+    </tr>
+
+    @foreach (var node in Model.Nodes)
+    {
+    <tr>
+        <td>@node.Description</td>
+        <td>@node.Endpoint</td>
+    </tr>       
+    }
+</table>
+
+

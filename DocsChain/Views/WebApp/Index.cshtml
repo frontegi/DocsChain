@@ -1,0 +1,91 @@
+﻿@model List<DataBlock>
+@{
+    ViewData["Title"] = "Documents Blocks";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+<form asp-controller="WebApp" asp-action="Upload" method="post" enctype="multipart/form-data">
+  <div class="row">
+        <div class="col-md-6"></div>
+
+        <div class="col-md-6">
+            <div>Submit a PDF as new chain Node</div>
+            <input type="file" id="formFile" accept=".pdf" name="formFile" class="btn btn-outline-primary">
+
+
+            <button type="submit" class="btn btn-outline-primary"> Upload file</button>
+        </div>
+    </div>
+
+</form>
+<br />
+
+
+<table class="table table-hover table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Index</th>
+            <th scope="col">Description</th>
+            <th scope="col">Data Size</th>
+            <th scope="col">Timestamp</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+
+    @foreach (var block in Model)
+    {
+    <tr>
+        <td title="Doc Hash: @block.Hash">@block.Index</td>
+        <td>@block.Description</td>
+        <td>@(block.DataSize / 1024) KBytes</td>
+        <td>@block.Timestamp</td>
+        <td>
+            @if (block.Index != 0 && System.IO.Path.GetExtension(block.Description) == ".pdf")
+            {
+                <button type="button" class="btn btn-dark" onclick="ShowPdf('@block.Index')">View PDF</button>
+            }
+        </td>
+        <td>
+            @if (block.Index != 0)
+            {
+                <a href="@Url.Action("Download","WebApp",new {Id=block.Index})"  class="btn btn-dark" >Download</a>
+            }
+        </td>
+    </tr>
+    }
+
+</table>
+
+
+<div id="pdfModalViewer" >
+    <!-- data-iziModal-fullscreen="true"  data-iziModal-title="Welcome"  data-iziModal-subtitle="Subtitle"  data-iziModal-icon="icon-home" -->
+    <object id="pdfObject" data="" type="application/pdf" width="1100" height="900"></object>
+</div>
+
+
+
+@section Scripts{ 
+    <script>
+
+        $("#pdfModalViewer").iziModal({
+            width: 1000,
+            height:800,
+            transitionIn: 'fadeInLeft',
+            transitionOut: 'fadeOutRight'
+        });
+
+        function ShowPdf(pdfId) { 
+            $.get('/WebApp/GetNodeAsBase64/' + pdfId, function (data) {
+                var base64Pdf = "data:application/pdf;base64," + data;
+                $("#pdfObject").attr('data', base64Pdf);
+                $("#pdfModalViewer").iziModal('open');
+            });            
+        }
+    </script>
+
+}
+
+
+
