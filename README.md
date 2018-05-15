@@ -166,5 +166,7 @@ How to restart from the beginning when you are going crazy:
 
 ## Contributing Guidelines
 Really, this is my first open source projects. I don't know if it will catch someone interest, and I never contributed to others projects. If you find it interesting and want to contribute, drop me a line.
+Thanks
+A POC by Giulio Fronterotta
 
 This project is licensed under the terms of the MIT license.
