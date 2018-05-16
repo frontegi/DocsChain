@@ -13,7 +13,7 @@ You can create small peer-to-peer networks of documents contributors. It doesn't
 The chain is stored as a serialised .dc file in the **Config** Directory along with another file, with network peers. The chain doesn't include uploaded documents. Documents are stored into the **FileStorage** Directory using the block Guid.
 It is primarly done for PDF storing, but it can work with other extensions (doc,docx,txt,xls,xlsx,png,jpg,jpeg,gif,csv)
 ## Tech 
-Code is based on **Asp .Net core 2.0 + WebApi** 
+Code is based on **Asp .Net core 2.0 + c# + WebApi** 
 **Controllers\WebAppController.cs** is for the GUI Action methods
 **Controllers\ChainController.cs** is used by WebApis controller, for the intra-nodes communication.
 ## Dependencies
